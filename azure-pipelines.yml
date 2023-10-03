@@ -21,6 +21,22 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
+
+- stage: Versioning
+  displayName: Versioning stage
+  jobs:
+    - job: VersionCheck
+      steps:
+      - script: java -version
+        displayName: 'Show Java Version'
+
+      - task: UseJava@0
+        displayName: 'Setup Java Version'
+        inputs:
+          version: '17'
+          jdkArchitecture: 'x64'  # use 'x86' for 32-bit, 'x64' for 64-bit
+          javaPath: 'JAVA_HOME'  # This sets JAVA_HOME to the JDK path
+
 - stage: Build
   displayName: Build stage
   jobs:
