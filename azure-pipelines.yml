@@ -27,15 +27,18 @@ stages:
   jobs:
     - job: VersionCheck
       steps:
+      - task: JavaToolInstaller@0
+        displayName: 'Setup Java Version'
+        inputs:
+          versionSpec: '17'
+          jdkArchitectureOption: 'x64'  # use 'x86' for 32-bit, 'x64' for 64-bit 
+          jdkSourceOption: AzureStorage
+          jdkDestinationDirectory: 'JAVA_HOME'  # This sets JAVA_HOME to the JDK path
+
       - script: java -version
         displayName: 'Show Java Version'
 
-      - task: UseJava@0
-        displayName: 'Setup Java Version'
-        inputs:
-          version: '17'
-          jdkArchitecture: 'x64'  # use 'x86' for 32-bit, 'x64' for 64-bit
-          javaPath: 'JAVA_HOME'  # This sets JAVA_HOME to the JDK path
+
 
 - stage: Build
   displayName: Build stage
