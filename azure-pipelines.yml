@@ -32,7 +32,7 @@ stages:
         inputs:
           versionSpec: '17'
           jdkArchitectureOption: 'x64'  # use 'x86' for 32-bit, 'x64' for 64-bit 
-          jdkSourceOption: AzureStorage
+          jdkSourceOption: 'PreInstalled'
           jdkDestinationDirectory: 'JAVA_HOME'  # This sets JAVA_HOME to the JDK path
 
       - script: java -version
